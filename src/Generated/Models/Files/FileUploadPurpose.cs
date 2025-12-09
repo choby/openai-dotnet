@@ -17,6 +17,7 @@ namespace OpenAI.Files
         private const string VisionValue = "vision";
         private const string UserDataValue = "user_data";
         private const string EvalsValue = "evals";
+        private const string FileExtractValue = "file-extract";
 
         public FileUploadPurpose(string value)
         {

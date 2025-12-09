@@ -19,6 +19,7 @@ namespace OpenAI.Files
             FilePurpose.Vision => "vision",
             FilePurpose.UserData => "user_data",
             FilePurpose.Evaluations => "evals",
+            FilePurpose.FileExtract => "file_extract",
             _ => throw new ArgumentOutOfRangeException(nameof(value), value, "Unknown FilePurpose value.")
         };
 
@@ -59,6 +60,10 @@ namespace OpenAI.Files
             if (StringComparer.OrdinalIgnoreCase.Equals(value, "evals"))
             {
                 return FilePurpose.Evaluations;
+            }
+            if (StringComparer.OrdinalIgnoreCase.Equals(value, "file-extract"))
+            {
+                return FilePurpose.FileExtract;
             }
             throw new ArgumentOutOfRangeException(nameof(value), value, "Unknown FilePurpose value.");
         }

@@ -24,4 +24,6 @@ public enum FilePurpose
 
     [Experimental("OPENAI001")]
     Evaluations,
+
+    FileExtract
 }
