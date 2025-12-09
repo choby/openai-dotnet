@@ -11,6 +11,8 @@ namespace OpenAI.Chat
     public readonly partial struct ChatImageDetailLevel : IEquatable<ChatImageDetailLevel>
     {
         private readonly string _value;
+        private readonly int? _min_pixels;
+        private readonly int? _max_pixels;
         private const string AutoValue = "auto";
         private const string LowValue = "low";
         private const string HighValue = "high";
@@ -21,6 +23,39 @@ namespace OpenAI.Chat
 
             _value = value;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="minPixels">
+        /// Compatible with Alibaba Cloud's large-scale model. <see href="https://www.alibabacloud.com/help/zh/model-studio/qwen-vl-ocr?spm=a2c63.p38356.help-menu-2400256.d_0_2_2.2ff01bb592UCRj#ceec1831e8k11"/>
+        /// 输入图像的最小像素阈值，小于该值图像会进行放大，直到总像素大于min_pixels
+        /// </param>
+        /// <param name="maxPixels">
+        /// Compatible with Alibaba Cloud's large-scale model. <see href="https://www.alibabacloud.com/help/zh/model-studio/qwen-vl-ocr?spm=a2c63.p38356.help-menu-2400256.d_0_2_2.2ff01bb592UCRj#ceec1831e8k11"/>
+        /// 输入图像的最大像素阈值，超过该值图像会进行缩小，直到总像素低于max_pixels
+        /// </param>
+        public ChatImageDetailLevel(string value, int? minPixels, int? maxPixels)
+        {
+            Argument.AssertNotNull(value, nameof(value));
+
+            _value = value;
+            _min_pixels = minPixels;
+            _max_pixels = maxPixels;
+        }
+
+        /// <summary>
+        /// Compatible with Alibaba Cloud's large-scale model
+        /// 输入图像的最小像素阈值，小于该值图像会进行放大，直到总像素大于min_pixels
+        /// </summary>
+        public int? MinPixels => _min_pixels;
+
+        /// <summary>
+        /// Compatible with Alibaba Cloud's large-scale model
+        /// 输入图像的最大像素阈值，超过该值图像会进行缩小，直到总像素低于max_pixels
+        /// </summary>
+        public int? MaxPixels => _max_pixels;
 
         public static ChatImageDetailLevel Auto { get; } = new ChatImageDetailLevel(AutoValue);
 

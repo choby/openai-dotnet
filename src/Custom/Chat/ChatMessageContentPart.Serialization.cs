@@ -41,6 +41,12 @@ public partial class ChatMessageContentPart : IJsonModel<ChatMessageContentPart>
         {
             writer.WritePropertyName("image_url"u8);
             writer.WriteObjectValue(instance._imageUri, options);
+
+            writer.WritePropertyName("min_pixels"u8);
+            writer.WriteObjectValue(instance.MinPixels);
+
+            writer.WritePropertyName("max_pixels"u8);
+            writer.WriteObjectValue(instance.MaxPixels);
         }
         else if (instance._kind == ChatMessageContentPartKind.InputAudio)
         {

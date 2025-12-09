@@ -77,6 +77,22 @@ public partial class ChatMessageContentPart
     public Uri ImageUri => _imageUri?.ImageUri;
 
     // CUSTOM: Spread.
+    /// <summary>
+    /// Compatible with Alibaba Cloud's large-scale model. <see href="https://www.alibabacloud.com/help/zh/model-studio/qwen-vl-ocr?spm=a2c63.p38356.help-menu-2400256.d_0_2_2.2ff01bb592UCRj#ceec1831e8k11"/>
+    /// 输入图像的最小像素阈值，小于该值图像会进行放大，直到总像素大于min_pixels
+    /// </summary>
+    /// <remarks> Present when <see cref="Kind"/> is <see cref="ChatMessageContentPartKind.Image"/>. </remarks>
+    public int? MinPixels => _imageUri?.Detail?.MinPixels;
+
+    // CUSTOM: Spread.
+    /// <summary>
+    /// Compatible with Alibaba Cloud's large-scale model. <see href="https://www.alibabacloud.com/help/zh/model-studio/qwen-vl-ocr?spm=a2c63.p38356.help-menu-2400256.d_0_2_2.2ff01bb592UCRj#ceec1831e8k11"/>
+    /// 输入图像的最大像素阈值，超过该值图像会进行缩小，直到总像素低于max_pixels
+    /// </summary>
+    /// <remarks> Present when <see cref="Kind"/> is <see cref="ChatMessageContentPartKind.Image"/>. </remarks>
+    public int? MaxPixels => _imageUri?.Detail?.MaxPixels;
+
+    // CUSTOM: Spread.
     /// <summary> The image bytes. </summary>
     /// <remarks> Present when <see cref="Kind"/> is <see cref="ChatMessageContentPartKind.Image"/>. </remarks>
     public BinaryData ImageBytes => _imageUri?.ImageBytes;
